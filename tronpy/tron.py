@@ -241,6 +241,10 @@ class TransactionBuilder(object):
         """Set fee_limit of the transaction, in `SUN`."""
         self._raw_data["fee_limit"] = value
         return self
+    
+    def set_expiration(self, expiration: int) -> "TransactionBuilder":
+        self._raw_data['expiration'] = current_timestamp() + expiration
+        return self
 
     def build(self, options=None, **kwargs) -> Transaction:
         """Build the transaction."""
